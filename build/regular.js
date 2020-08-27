@@ -131,7 +131,7 @@ var Regular = function (_Component) {
 
         return _react2["default"].createElement(
             'div',
-            { className: 'ac-regular' },
+            { className: 'ac-regular', style: { width: inputWidth } },
             _react2["default"].createElement(
                 'div',
                 { className: 'ac-regular-input', style: { width: inputWidth } },

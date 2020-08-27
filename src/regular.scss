@@ -1,11 +1,11 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-variables";
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
-@import "../node_modules/bee-button/build/Button.css";
-@import "../node_modules/bee-modal/build/Modal.css";
-@import "../node_modules/bee-select/build/Select.css";
-@import "../node_modules/bee-icon/build/Icon.css";
-@import "../node_modules/bee-select/build/Select.css";
-@import "../node_modules/bee-form-control/build/FormControl.css";
+@import '../node_modules/bee-button/src/Button.scss';
+@import "../node_modules/bee-modal/src/Modal.scss";
+@import "../node_modules/bee-select/src/Select.scss";
+@import "../node_modules/bee-icon/src/Icon.scss";
+@import "../node_modules/bee-select/src/Select.scss";
+@import "../node_modules/bee-form-control/src/FormControl.scss";
 @import "./components/Right/index.scss";
 @import "./components/Left/index.scss";
 .ac-regular{
@@ -17,9 +17,9 @@
         border-radius: 3px;
         input { width: 87%;
             display: inline-block;
-            padding: 0;
+            padding: 0!important;
             text-indent: 12px;
-            border: 0;}
+            border: 0!important;}
         i{position: absolute; right:10px;    top: 7px; cursor: pointer;}
     }
    
@@ -36,6 +36,8 @@
         padding: 10px 16px;
         text-align: right;
         border-top: 1px solid #ccc;
+        display: inline-block;
+        width: 96%;
         button{font-size: 12px;}
     }
 }
@@ -43,8 +45,7 @@
 
 .regular-left {
     float: left;
-    width: 224px;
-    padding-left:16px;
+    width: 240px;
    // border-right:1px solid #e4e4e4;
     .regular-left-li{
         margin-top: 10px;
@@ -53,6 +54,7 @@
         color: #333;
         width: 200px;
         padding: 5px;
+        margin-left: 16px;
     }
     .regular-left-li:hover,.regular-left-li.active{background:rgba(237,241,247,1);
         border-radius:100px;}
@@ -63,8 +65,9 @@
         color:rgba(80,87,102,1);
         line-height:20px; 
         float: left;
-        margin: 6px 0;}
-    .regularleft-search { width: 208px; }
+        margin: 6px 0 6px 16px;
+    width: 92%;}
+    .regularleft-search { width: 208px;margin-left: 16px; }
     input::-webkit-search-cancel-button{
         display: none;
       }
@@ -74,7 +77,7 @@
         border-radius:4px;
         border:1px solid rgba(217,217,217,1);font-size: 12px;padding: 0;
         text-indent: 8px;}
-    .regularleft-select { margin-top:8px;width:208px;}
+    .regularleft-select { margin-top:8px;width:208px;margin-left: 16px;}
     .regularleft-select .u-select-selection { height:28px;
         background:rgba(255,255,255,1);
         border-radius:4px;
@@ -103,6 +106,6 @@
         font-size: 12px;
         line-height: 18px;
         margin-right: 5px;
-        border:1px solid rgba(217,217,217,1);}
+        border:1px solid rgba(217,217,217,1);color: #333;}
     .regularright-btn button:hover { background:#eee}
   }

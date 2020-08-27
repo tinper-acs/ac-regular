@@ -8,6 +8,7 @@ import Left from './components/Left'
 import Right from './components/Right'
 import {regularTree} from './regularTree.js'
 
+
 const propTypes = {};
 const defaultProps = {};
 class Regular extends Component {
@@ -60,7 +61,7 @@ class Regular extends Component {
     render(){
         const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue} = this.state
         return(
-        <div className="ac-regular">
+        <div className="ac-regular" style={{width:inputWidth}}>
             <div className='ac-regular-input' style={{width:inputWidth}}>
                 <FormControl
                     className="demo1-input"
