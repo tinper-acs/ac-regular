@@ -1,0 +1,134 @@
+/* FormGroup */
+/*  Navlayout  */
+@import url(../node_modules/bee-button/build/Button.css);
+@import url(../node_modules/bee-modal/build/Modal.css);
+@import url(../node_modules/bee-select/build/Select.css);
+@import url(../node_modules/bee-icon/build/Icon.css);
+@import url(../node_modules/bee-select/build/Select.css);
+@import url(../node_modules/bee-form-control/build/FormControl.css);
+.ac-regular .ac-regular-input {
+  width: 240px;
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #a5adba;
+  border-radius: 3px; }
+  .ac-regular .ac-regular-input input {
+    width: 87%;
+    display: inline-block;
+    padding: 0;
+    text-indent: 12px;
+    border: 0; }
+  .ac-regular .ac-regular-input i {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    cursor: pointer; }
+
+.ac-regular-modal .u-modal-dialog {
+  width: 800px; }
+
+.ac-regular-modal .u-modal-body {
+  padding: 0; }
+
+.ac-regular-modal .u-modal-header {
+  height: 44px;
+  padding: 0 20px;
+  border-bottom: 1px solid #e4e4e4; }
+  .ac-regular-modal .u-modal-header .u-close {
+    line-height: 44px; }
+
+.ac-regular-modal .u-modal-title {
+  font-size: 14px;
+  font-family: PingFangSC-Semibold,PingFang SC;
+  font-weight: 600;
+  color: #666;
+  line-height: 44px; }
+
+.ac-regular-modal .u-modal-footer {
+  padding: 10px 16px;
+  text-align: right;
+  border-top: 1px solid #ccc; }
+  .ac-regular-modal .u-modal-footer button {
+    font-size: 12px; }
+
+.regular-left {
+  float: left;
+  width: 224px;
+  padding-left: 16px; }
+  .regular-left .regular-left-li {
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #333;
+    width: 200px;
+    padding: 5px; }
+  .regular-left .regular-left-li:hover, .regular-left .regular-left-li.active {
+    background: #edf1f7;
+    border-radius: 100px; }
+  .regular-left .regularleft-title span {
+    font-size: 14px;
+    font-family: PingFangSC-Semibold,PingFang SC;
+    font-weight: 600;
+    color: #505766;
+    line-height: 20px;
+    float: left;
+    margin: 6px 0; }
+  .regular-left .regularleft-search {
+    width: 208px; }
+  .regular-left input::-webkit-search-cancel-button {
+    display: none; }
+  .regular-left .regularleft-search .uf-search {
+    color: #ccc; }
+  .regular-left .regularleft-search input {
+    height: 28px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    font-size: 12px;
+    padding: 0;
+    text-indent: 8px; }
+  .regular-left .regularleft-select {
+    margin-top: 8px;
+    width: 208px; }
+  .regular-left .regularleft-select .u-select-selection {
+    height: 28px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9; }
+
+.ac-regular-right {
+  float: left;
+  width: 548px;
+  border: 4px solid #F0F1F4; }
+  .ac-regular-right .ac-regular-right-memo {
+    height: 50px;
+    border-bottom: 1px solid #E4E4E4;
+    float: left;
+    width: 100%;
+    margin-bottom: 8px;
+    color: #FC4C2F; }
+  .ac-regular-right .ac-regular-right-input {
+    float: left;
+    padding: 0;
+    height: 300px;
+    width: 545px;
+    border-radius: 2px;
+    border: 1px solid rgba(80, 87, 102, 0.6); }
+  .ac-regular-right .regularright-btn {
+    float: left;
+    width: 100%;
+    margin: 8px 0; }
+  .ac-regular-right .regularright-btn button {
+    float: right;
+    width: 52px;
+    height: 26px;
+    background: white;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 5px;
+    border: 1px solid #d9d9d9; }
+  .ac-regular-right .regularright-btn button:hover {
+    background: #eee; }
