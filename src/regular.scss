@@ -1,0 +1,108 @@
+@import "../node_modules/tinper-bee-core/scss/minxin-variables";
+@import "../node_modules/tinper-bee-core/scss/minxin-mixins";
+@import "../node_modules/bee-button/build/Button.css";
+@import "../node_modules/bee-modal/build/Modal.css";
+@import "../node_modules/bee-select/build/Select.css";
+@import "../node_modules/bee-icon/build/Icon.css";
+@import "../node_modules/bee-select/build/Select.css";
+@import "../node_modules/bee-form-control/build/FormControl.css";
+@import "./components/Right/index.scss";
+@import "./components/Left/index.scss";
+.ac-regular{
+    .ac-regular-input {
+        width: 240px;display: inline-block; position: relative;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid rgb(165, 173, 186);
+        border-radius: 3px;
+        input { width: 87%;
+            display: inline-block;
+            padding: 0;
+            text-indent: 12px;
+            border: 0;}
+        i{position: absolute; right:10px;    top: 7px; cursor: pointer;}
+    }
+   
+}
+.ac-regular-modal {
+    .u-modal-dialog {width: 800px;}
+    .u-modal-body {padding:0}
+    .u-modal-header { 
+        height: 44px;padding: 0 20px; border-bottom:1px solid #e4e4e4;
+        .u-close { line-height: 44px;}
+    }
+    .u-modal-title{font-size: 14px;font-family: PingFangSC-Semibold,PingFang SC;font-weight: 600;color: #666;line-height: 44px;}
+    .u-modal-footer {    
+        padding: 10px 16px;
+        text-align: right;
+        border-top: 1px solid #ccc;
+        button{font-size: 12px;}
+    }
+}
+
+
+.regular-left {
+    float: left;
+    width: 224px;
+    padding-left:16px;
+   // border-right:1px solid #e4e4e4;
+    .regular-left-li{
+        margin-top: 10px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #333;
+        width: 200px;
+        padding: 5px;
+    }
+    .regular-left-li:hover,.regular-left-li.active{background:rgba(237,241,247,1);
+        border-radius:100px;}
+    .regularleft-title span{
+         font-size:14px;
+        font-family:PingFangSC-Semibold,PingFang SC;
+        font-weight:600;
+        color:rgba(80,87,102,1);
+        line-height:20px; 
+        float: left;
+        margin: 6px 0;}
+    .regularleft-search { width: 208px; }
+    input::-webkit-search-cancel-button{
+        display: none;
+      }
+    .regularleft-search .uf-search{ color:#ccc}
+    .regularleft-search input{  height:28px;
+        background:rgba(255,255,255,1);
+        border-radius:4px;
+        border:1px solid rgba(217,217,217,1);font-size: 12px;padding: 0;
+        text-indent: 8px;}
+    .regularleft-select { margin-top:8px;width:208px;}
+    .regularleft-select .u-select-selection { height:28px;
+        background:rgba(255,255,255,1);
+        border-radius:4px;
+        border:1px solid rgba(217,217,217,1);}
+   
+}
+
+.ac-regular-right {
+    float: left;
+    width: 548px;
+    border: 4px solid #F0F1F4;
+    .ac-regular-right-memo {     height: 50px;
+        border-bottom: 1px solid #E4E4E4;
+        float: left;
+        width: 100%;
+        margin-bottom: 8px; color: #FC4C2F;}
+    .ac-regular-right-input {float: left;padding: 0;height: 300px;    width: 545px;
+        border-radius: 2px;
+       
+        border: 1px solid rgba(80,87,102,.6)}
+    .regularright-btn { float: left;width: 100%;margin: 8px 0;}
+    .regularright-btn button { float: right;width:52px;
+        height:26px;
+        background:rgba(255,255,255,1);
+        border-radius:4px;
+        font-size: 12px;
+        line-height: 18px;
+        margin-right: 5px;
+        border:1px solid rgba(217,217,217,1);}
+    .regularright-btn button:hover { background:#eee}
+  }
