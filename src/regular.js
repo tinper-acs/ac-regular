@@ -34,6 +34,8 @@ class Regular extends Component {
     submit=()=>{
         const {inputValue}=this.state
         this.setState({showModal:false,value:inputValue})
+        this.props.onChange&&this.props.onChange(inputValue)
+
     }
     valueChange=(data)=>{
         const {inputValue}=this.state

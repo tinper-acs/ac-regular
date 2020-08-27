@@ -31,10 +31,12 @@ import 'ac-regular/build/regular.css'
 ## API
 
 |参数|说明|类型|默认值|
+|:--:|:--:|:--:|:--:|
 |title|弹窗标题|string|正则表达式|
 |regularTree|左侧树|array||
-|value|初始值|string|空|
+|value|初始值|string|-|
 |inputWidth|输入框宽度|number|240|
+|onChange|点击确定的方法|function(value)|-|
 
 ### 左侧树数据要求
 ```json
