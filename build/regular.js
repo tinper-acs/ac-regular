@@ -73,6 +73,7 @@ var Regular = function (_Component) {
             var inputValue = _this.state.inputValue;
 
             _this.setState({ showModal: false, value: inputValue });
+            _this.props.onChange && _this.props.onChange(inputValue);
         };
 
         _this.valueChange = function (data) {
@@ -116,6 +117,12 @@ var Regular = function (_Component) {
         };
         return _this;
     }
+
+    Regular.prototype.componentWillReceiveProps = function componentWillReceiveProps(porps) {
+        if (porps.value != this.state.value) {
+            this.setState({ value: porps.value || '' });
+        }
+    };
 
     Regular.prototype.render = function render() {
         var _state = this.state,

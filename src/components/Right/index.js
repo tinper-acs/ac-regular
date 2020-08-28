@@ -40,7 +40,7 @@ class Regular extends Component {
         this.props.memoChange('复制成功')
     }
     render(){
-        const {value,memo} = this.props
+        const {value,memo=''} = this.props
         return(
         <div className="ac-regular-right">
            <div className="ac-regular-right-memo">

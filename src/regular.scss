@@ -1,10 +1,9 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-variables";
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
-@import '../node_modules/bee-button/src/Button.scss';
 @import "../node_modules/bee-modal/src/Modal.scss";
+@import '../node_modules/bee-button/src/Button.scss';
 @import "../node_modules/bee-select/src/Select.scss";
 @import "../node_modules/bee-icon/src/Icon.scss";
-@import "../node_modules/bee-select/src/Select.scss";
 @import "../node_modules/bee-form-control/src/FormControl.scss";
 @import "./components/Right/index.scss";
 @import "./components/Left/index.scss";
@@ -28,7 +27,7 @@
    
 }
 .ac-regular-modal {
-    .u-modal-dialog {width: 800px;}
+    .u-modal-dialog {width: 800px;padding-left:0!important}
     .u-modal-body {padding:0}
     .u-modal-header { 
         height: 44px;padding: 0 20px; border-bottom:1px solid #e4e4e4;
@@ -36,12 +35,13 @@
     }
     .u-modal-title{font-size: 14px;font-family: PingFangSC-Semibold,PingFang SC;font-weight: 600;color: #666;line-height: 44px;}
     .u-modal-footer {    
-        padding: 10px 16px;
+        padding: 10px 0;
         text-align: right!important;
         border-top: 1px solid #ccc;
         display: inline-block;
-        width: 96%;
+        width: 100%;
         button{font-size: 12px;}
+        .submitBtn {margin-right: 16px;}
     }
 }
 
@@ -50,6 +50,10 @@
     float: left;
     width: 240px;
    // border-right:1px solid #e4e4e4;
+   ul{
+    height: 350px;
+    overflow-y: auto;
+   }
     .regular-left-li{
         margin-top: 10px;
         cursor: pointer;
@@ -90,14 +94,14 @@
 
 .ac-regular-right {
     float: left;
-    width: 548px;
+    width: 550px;
     border: 4px solid #F0F1F4;
     .ac-regular-right-memo {     height: 50px;
         border-bottom: 1px solid #E4E4E4;
         float: left;
         width: 100%;
         margin-bottom: 8px; color: #FC4C2F;}
-    .ac-regular-right-input {float: left;padding: 0;height: 300px;    width: 545px;
+    .ac-regular-right-input {float: left;padding: 0;height: 340px;    width: 545px;
         border-radius: 2px;
        
         border: 1px solid rgba(80,87,102,.6)}

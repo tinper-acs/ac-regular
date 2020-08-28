@@ -24,6 +24,11 @@ class Regular extends Component {
             searchTree:[]
         };
     }
+    componentWillReceiveProps(porps){
+        if(porps.value!=this.state.value){
+            this.setState({value:porps.value || ''})
+        }
+    }
     close=()=>{
         this.setState({showModal:false})
     }
@@ -39,7 +44,8 @@ class Regular extends Component {
     }
     valueChange=(data)=>{
         const {inputValue}=this.state
-        this.setState({inputValue:inputValue+data.code,memo:data.memo})
+        const memo = data.memo || ''
+        this.setState({inputValue:inputValue+data.code,memo:'注释：'+memo})
     }
     inputChange=(inputValue)=>{
         this.setState({inputValue})
@@ -89,7 +95,7 @@ class Regular extends Component {
 
                 <Modal.Footer className="text-center">
                     <Button colors="secondary" style={{ marginRight: 8 }}  onClick={this.close}>取消</Button>
-                    <Button  colors="primary" onClick={this.submit}>确认</Button>
+                    <Button  colors="primary" className='submitBtn' onClick={this.submit}>确认</Button>
                 </Modal.Footer>
             </Modal>
         </div>)
