@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import FormControl from 'bee-form-control';
 import Button from 'bee-button';
 import copy from 'copy-to-clipboard';
 import Icon from 'bee-icon';
+
+// import AceEditor from 'react-ace';
+ 
+// import "ace-builds/src-noconflict/mode-java";
+// import "ace-builds/src-noconflict/theme-github";
 
 const propTypes = {};
 const defaultProps = {};
@@ -13,11 +18,12 @@ class Regular extends Component {
         this.state = {
         };
     }
+    
     submit=()=>{
         const {value} = this.props
         let isReg
         try {
-            isReg = this.evil(value) instanceof RegExp
+            isReg = this.evil("/"+value+'/') instanceof RegExp
         } catch (e) {
             isReg = false
         }
@@ -52,7 +58,16 @@ class Regular extends Component {
                 onChange={this.props.inputChange}
                 componentClass="textarea"
             />
-            
+             {/* <AceEditor
+                mode="java"
+                theme="github"
+                ref="editor"
+                value={value}
+                onChange={this.props.inputChange}
+                name="UNIQUE_ID_OF_DIV"
+                editorProps={{ $blockScrolling: true }}
+            /> */}
+           
             <div className="regularright-btn">
                 <Button  bordered onClick={this.submit}>校验</Button>
                 <Button  bordered onClick={this.clearn}>清空</Button>

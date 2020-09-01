@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 class Demo extends Component {
     render(){
-        return( <Regular onChange={(v)=>{console.log(v)}}/> )
+        return( <Regular onChange={(v)=>{console.log(v)}} mode='js'/> )
     }
 }
 export default Demo;

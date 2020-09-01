@@ -62,7 +62,7 @@
     "bee-modal": "latest",
     "bee-select": "latest",
     "bee-form-control": "latest",
-    "bee-icon": "latest"
+    "bee-icon": "latest",
   },
   "peerDependencies": {
     "react": ">= 15.3.0",

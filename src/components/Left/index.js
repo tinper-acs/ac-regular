@@ -26,6 +26,7 @@ class Left extends Component {
     onSearch=(v)=>{
         this.props.onSearch(v)
     }
+   
     render(){
         const {selectValue,activeIndex} = this.state
         const {tree,newTree,searchValue} = this.props
@@ -36,7 +37,7 @@ class Left extends Component {
         })
         const loopsli =(data) => data.map((v,k)=>{
             return (
-              <li className ={activeIndex==k?'regular-left-li active':'regular-left-li'} value={escape(v.code)} key={v.id} onClick={this.valueChange.bind(this,v,k)}>{v.name}</li>
+              <li className ={activeIndex==k?'regular-left-li active':'regular-left-li'} value={v.code} key={v.id} onClick={this.valueChange.bind(this,v,k)}>{v.name}</li>
             )
         })
         return(

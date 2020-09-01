@@ -17,13 +17,17 @@ class Regular extends Component {
         this.state = {
             showModal:false,
             title:props.title || '正则表达式',
-            tree:props.regularTree || regularTree,
+            tree:props.regularTree ||regularTree,
             value:props.value || '',
             inputWidth:props.inputWidth || 240,
             inputValue:'',
-            searchTree:[]
+            searchTree:[],
+            mode:props.mode
+
         };
     }
+    
+    
     componentWillReceiveProps(porps){
         if(porps.value!=this.state.value){
             this.setState({value:porps.value || ''})
@@ -37,7 +41,10 @@ class Regular extends Component {
         this.setState({showModal:true,inputValue:value})
     }
     submit=()=>{
-        const {inputValue}=this.state
+        let {inputValue,mode}=this.state
+        if(mode=='js'){
+            inputValue = "/"+inputValue+"/"
+        }
         this.setState({showModal:false,value:inputValue})
         this.props.onChange&&this.props.onChange(inputValue)
 
@@ -45,7 +52,27 @@ class Regular extends Component {
     valueChange=(data)=>{
         const {inputValue}=this.state
         const memo = data.memo || ''
-        this.setState({inputValue:inputValue+data.code,memo:'注释：'+memo})
+        this.setState({inputValue:inputValue+this.ch2Unicdoe(data.code),memo:'注释：'+memo})
+    }
+    
+    isChinese(s){
+        return /[\u4e00-\u9fa5]/.test(s);
+    }
+    ch2Unicdoe=(str)=>{
+        if(!str){
+            return;
+        }
+        var unicode = '';
+        for (var i = 0; i <  str.length; i++) {
+            var temp = str.charAt(i);
+            if(this.isChinese(temp)){
+                unicode += '\\u' +  temp.charCodeAt(0).toString(16);
+            }
+            else{
+                unicode += temp;
+            }
+        }
+        return unicode;
     }
     inputChange=(inputValue)=>{
         this.setState({inputValue})
