@@ -22,8 +22,8 @@ class Regular extends Component {
             inputWidth:props.inputWidth || 240,
             inputValue:'',
             searchTree:[],
-            mode:props.mode
-
+            mode:props.mode,
+            memo:''
         };
     }
     
@@ -32,9 +32,10 @@ class Regular extends Component {
         if(porps.value!=this.state.value){
             this.setState({value:porps.value || ''})
         }
+       
     }
     close=()=>{
-        this.setState({showModal:false})
+        this.setState({showModal:false,memo:''})
     }
     open=()=>{
         const {value}=this.state
@@ -45,14 +46,14 @@ class Regular extends Component {
         if(mode=='js'){
             inputValue = "/"+inputValue+"/"
         }
-        this.setState({showModal:false,value:inputValue})
+        this.setState({showModal:false,value:inputValue,memo:''})
         this.props.onChange&&this.props.onChange(inputValue)
 
     }
     valueChange=(data)=>{
         const {inputValue}=this.state
         const memo = data.memo || ''
-        this.setState({inputValue:inputValue+this.ch2Unicdoe(data.code),memo:'注释：'+memo})
+        this.setState({inputValue:this.ch2Unicdoe(data.code),memo:'注释：'+memo})
     }
     
     isChinese(s){

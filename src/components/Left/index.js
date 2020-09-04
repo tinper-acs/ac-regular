@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'bee-select';
-import FormControl from 'bee-form-control';
+import Icon from 'bee-icon';
 
 const Option = Select.Option;
 const propTypes = {};
@@ -12,10 +12,23 @@ class Left extends Component {
         this.state = {
             selectValue:'0',
             activeIndex:-1,
-            
+            selectList:[],
+            tree:props.tree
         };
     }
-    
+    componentDidMount(){
+        const {tree} = this.state
+        let selectList=[]
+        const newtree =JSON.parse(JSON.stringify(tree)) 
+        newtree.forEach((v)=>{
+            v.child.forEach((v2)=>{
+                const newa = v2
+                newa.name = v.name+'/'+newa.name
+                selectList.push(newa)
+            })
+        }) 
+        this.setState({selectList})
+    }
     textChange=(selectValue)=>{
         this.setState({selectValue,activeIndex:-1})
     }
@@ -23,13 +36,15 @@ class Left extends Component {
         this.props.valueChange(v)
         this.setState({activeIndex:k})
     }
-    onSearch=(v)=>{
-        this.props.onSearch(v)
-    }
-   
+    
+    onSearch = (value,{props:{item,key}}) => {
+        console.log(`selected ${value}`);
+        console.log(`selected item `,item);
+        this.valueChange(item,key)
+      };
     render(){
-        const {selectValue,activeIndex} = this.state
-        const {tree,newTree,searchValue} = this.props
+        const {selectList,activeIndex,selectValue} = this.state
+        const {tree} = this.props
         const loops =(data) => data.map((v,k)=>{
             return (
               <Option value={v.id} key={v.id}>{v.name}</Option>
@@ -46,14 +61,29 @@ class Left extends Component {
                 <span>常用</span>
             </div>
            
-            <FormControl
+            {/* <FormControl
                 className="regularleft-search"
                 value={searchValue}
                 style={{ width: 208}}
                 onSearch={this.onSearch}
                 type="search"
-            />
-            
+            /> */}
+             <Icon type="uf-search"/>
+            <Select
+                showSearch
+               // combobox
+                className="regularleft-search"
+                style={{ width: 208 }}
+                placeholder="搜索"
+                optionFilterProp="children"
+               // onSelect={this.onSelect}
+                onChange={this.onSearch}
+                dropdownClassName={'regularleft-search-drop'}
+            >
+                {
+                selectList.map((da,i)=>{return (<Option key={i} title={da.name} value={da.code} item={da} >{da.name}</Option>)})
+                }
+            </Select>
             <Select 
                 className ='regularleft-select'
                 placeholder={''}
@@ -62,9 +92,9 @@ class Left extends Component {
                 onChange={this.textChange}>
                 {loops(tree||[])}
              </Select>
-             <ul  >
+             <ul  className ='regularleft-select-ul'>
                 {
-                    searchValue? loopsli(newTree):loopsli(tree[selectValue].child)
+                    loopsli(tree[selectValue].child)
                 }
              </ul>
         </div>)
