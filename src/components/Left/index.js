@@ -11,7 +11,7 @@ class Left extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectValue:'0',
+            selectValue:'1',
             activeIndex:-1,
             selectList:[],
             tree:props.tree
@@ -41,7 +41,8 @@ class Left extends Component {
     onSearch = (value,{props:{item,key}}) => {
         console.log(`selected ${value}`);
         console.log(`selected item `,item);
-        this.valueChange(item,key)
+        this.setState({selectValue:item.id.split('-')[0]})
+        this.valueChange(item,parseInt(item.id.split('-')[1])-1)
       };
     selectPinYin=(input,option)=>{
         if(input.charCodeAt()>=32&&input.charCodeAt()<=126){
@@ -108,7 +109,7 @@ class Left extends Component {
              </Select>
              <ul  className ='regularleft-select-ul'>
                 {
-                    loopsli(tree[selectValue].child)
+                    loopsli(tree[ parseInt(selectValue)-1 ].child)
                 }
              </ul>
         </div>)

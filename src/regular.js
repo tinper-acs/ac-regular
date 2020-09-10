@@ -17,6 +17,7 @@ class Regular extends Component {
         this.state = {
             showModal:false,
             title:props.title || '正则表达式',
+            backdrop:props.backdrop || true,
             tree:props.regularTree ||regularTree,
             value:props.value || '',
             inputWidth:props.inputWidth || 240,
@@ -105,7 +106,7 @@ class Regular extends Component {
         this.setState({memo})
     }
     render(){
-        const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue,step,data} = this.state
+        const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue,step,data,backdrop} = this.state
         return(
         <div className="ac-regular" style={{width:inputWidth}}>
             <div className='ac-regular-input' style={{width:inputWidth}}>
@@ -120,6 +121,7 @@ class Regular extends Component {
                 show={showModal}
                 onHide={this.close}
                 enforceFocus={false}
+                backdrop={backdrop}
                 className="ac-regular-modal"
             >
                 <Modal.Header closeButton>

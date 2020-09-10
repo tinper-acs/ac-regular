@@ -59,11 +59,12 @@ class Regular extends Component {
         return(
         <div className="ac-regular-right">
            <div className="ac-regular-right-memo">
-               {memo}
+               {memo?memo:<span >提示区</span>}
            </div>
            <FormControl
                 className="ac-regular-right-input"
                 value={value}
+                placeholder='请输入'
                 onChange={this.props.inputChange}
                 componentClass="textarea"
             />
