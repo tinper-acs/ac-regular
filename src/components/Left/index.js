@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'bee-select';
 import Icon from 'bee-icon';
+import Pinyin from '../../ChinesePY'
 
 const Option = Select.Option;
 const propTypes = {};
@@ -42,6 +43,19 @@ class Left extends Component {
         console.log(`selected item `,item);
         this.valueChange(item,key)
       };
+    selectPinYin=(input,option)=>{
+        if(input.charCodeAt()>=32&&input.charCodeAt()<=126){
+            const value = option.props.children.toLowerCase();
+            return Pinyin.GetQP(value).indexOf( input.toLowerCase() ) >= 0;
+        }else{
+            return option.props.children.toLowerCase().indexOf( input.toLowerCase() ) >= 0
+        }
+    }
+    chineseChangePY=(item,input)=>{
+        const qp = Pinyin.GetQP(item)
+        const rgx = new RegExp(input, 'gi')
+        return rgx.test(qp)
+    }
     render(){
         const {selectList,activeIndex,selectValue} = this.state
         const {tree} = this.props
@@ -76,7 +90,7 @@ class Left extends Component {
                 style={{ width: 208 }}
                 placeholder="搜索"
                 optionFilterProp="children"
-               // onSelect={this.onSelect}
+                filterOption={(input,Option)=>{return this.selectPinYin(input,Option)}}
                 onChange={this.onSearch}
                 dropdownClassName={'regularleft-search-drop'}
             >

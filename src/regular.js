@@ -23,7 +23,9 @@ class Regular extends Component {
             inputValue:'',
             searchTree:[],
             mode:props.mode,
-            memo:''
+            memo:'',
+            step:0,
+            data:{}
         };
     }
     
@@ -51,9 +53,9 @@ class Regular extends Component {
 
     }
     valueChange=(data)=>{
-        const {inputValue}=this.state
         const memo = data.memo || ''
-        this.setState({inputValue:this.ch2Unicdoe(data.code),memo:'注释：'+memo})
+        this.inputChange(this.ch2Unicdoe(data.code))
+        this.setState({memo:'注释：'+memo})
     }
     
     isChinese(s){
@@ -75,8 +77,16 @@ class Regular extends Component {
         }
         return unicode;
     }
-    inputChange=(inputValue)=>{
-        this.setState({inputValue})
+    inputChange=(inputValue,isStep,stepNow)=>{
+        let {step,data} = this.state
+        if(isStep!==true){
+            step++
+            data[step] = inputValue
+        }else{
+            step=stepNow
+        }
+        console.log(step,data)
+        this.setState({inputValue,step,data})
     }
     onSearch=(searchValue)=>{
         const {tree=[]}=this.state
@@ -95,7 +105,7 @@ class Regular extends Component {
         this.setState({memo})
     }
     render(){
-        const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue} = this.state
+        const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue,step,data} = this.state
         return(
         <div className="ac-regular" style={{width:inputWidth}}>
             <div className='ac-regular-input' style={{width:inputWidth}}>
@@ -118,7 +128,7 @@ class Regular extends Component {
 
                 <Modal.Body>
                     <Left tree={tree} valueChange={this.valueChange} onSearch={this.onSearch} newTree={newTree} searchValue={searchValue}></Left>
-                    <Right memo={memo} value={inputValue} inputChange={this.inputChange} memoChange={this.memoChange}></Right>
+                    <Right memo={memo} step={step} data={data} value={inputValue} inputChange={this.inputChange} memoChange={this.memoChange}></Right>
                 </Modal.Body>
 
                 <Modal.Footer className="text-center">

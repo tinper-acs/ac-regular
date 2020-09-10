@@ -45,6 +45,15 @@ class Regular extends Component {
         copy(value)
         this.props.memoChange('复制成功')
     }
+    gonext=()=>{
+        const {step,data} = this.props
+        step<Object.keys(data).length&&this.props.inputChange(data[step+1],true,step+1)
+       
+    }
+    goback=()=>{
+        const {step,data} = this.props
+        step>0&&this.props.inputChange(data[step-1],true,step-1)
+    }
     render(){
         const {value,memo=''} = this.props
         return(
@@ -72,8 +81,8 @@ class Regular extends Component {
                 <Button  bordered onClick={this.submit}>校验</Button>
                 <Button  bordered onClick={this.clearn}>清空</Button>
                 <Button  bordered onClick={this.copyFun}>复制</Button>
-                {/* <Button  bordered onClick={this.submit}> <Icon type="uf-repeat" /></Button>
-                <Button  bordered onClick={this.submit}> <Icon type="uf-back" /></Button> */}
+                <Button  bordered onClick={this.gonext}> <Icon type="uf-repeat" /></Button>
+                <Button  bordered onClick={this.goback}> <Icon type="uf-back" /></Button>
             </div>
         </div>)
     }
