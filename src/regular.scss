@@ -5,6 +5,7 @@
 @import "../node_modules/bee-select/src/Select.scss";
 @import "../node_modules/bee-icon/src/Icon.scss";
 @import "../node_modules/bee-form-control/src/FormControl.scss";
+@import "../node_modules/bee-message/src/Message.scss";
 @import "./components/Right/index.scss";
 @import "./components/Left/index.scss";
 .ac-regular{
@@ -26,6 +27,7 @@
     }
    
 }
+.regularMessage .u-message-notice-close{display: none;}
 .ac-regular-modal {
     .u-modal-dialog {width: 800px;padding-left:0!important}
     .u-modal-body {padding:0}
@@ -61,11 +63,12 @@
    .uf-search{    position: absolute;
     right: 25px;
     z-index: 9;
-    top: 39px;
+    top: 77px;
     color: #ddd}
    .regularleft-select-ul{
     height: 350px;
     overflow-y: auto;
+    overflow-x: hidden;
    }
     .regular-left-li{
         margin-top: 10px;
@@ -116,7 +119,11 @@
         margin-bottom: 8px;
         text-indent: 10px;
         padding-top: 10px;}
-    .ac-regular-right-memo span { color: #ccc;}
+    .ac-regular-right-memo span {    color: #ccc;
+        text-align: center;
+        width: 96%;
+        display: inline-block;
+        margin-top: 6px;}
     .ac-regular-right-input {float: left;
         padding: 0;
         height: 340px;

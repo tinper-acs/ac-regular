@@ -106,7 +106,8 @@ class Regular extends Component {
         this.setState({memo})
     }
     render(){
-        const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue,step,data,backdrop} = this.state
+        const {showModal,title,tree,value,inputWidth,memo,inputValue,newTree,searchValue,step,data} = this.state
+        const {backdrop} =this.props
         return(
         <div className="ac-regular" style={{width:inputWidth}}>
             <div className='ac-regular-input' style={{width:inputWidth}}>

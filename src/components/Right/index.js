@@ -4,6 +4,7 @@ import FormControl from 'bee-form-control';
 import Button from 'bee-button';
 import copy from 'copy-to-clipboard';
 import Icon from 'bee-icon';
+import Message from 'bee-message';
 
 // import AceEditor from 'react-ace';
  
@@ -28,9 +29,11 @@ class Regular extends Component {
             isReg = false
         }
         if(isReg){
-            this.props.memoChange('校验成功')
+            Message.destroy();
+            Message.create({content: '校验成功', color: 'successlight', icon: 'uf uf-arrow-c-o-down',className:'regularMessage'});
         }else{
-            this.props.memoChange('校验失败')
+            Message.destroy();
+            Message.create({content: '校验失败', color: 'warninglight', icon: 'uf uf-close-c',className:'regularMessage'});
         }
     }
     evil=(fn)=> {
@@ -59,7 +62,7 @@ class Regular extends Component {
         return(
         <div className="ac-regular-right">
            <div className="ac-regular-right-memo">
-               {memo?memo:<span >提示区</span>}
+               {memo?memo:<span >说明区</span>}
            </div>
            <FormControl
                 className="ac-regular-right-input"

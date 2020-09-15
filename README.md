@@ -34,6 +34,7 @@ import 'ac-regular/build/regular.css'
 |:--:|:--:|:--:|:--:|
 |title|弹窗标题|string|正则表达式|
 |regularTree|左侧树|array||
+|backdrop|弹窗背景是否加深|Boolean|true|
 |value|初始值|string|-|
 |inputWidth|输入框宽度|number|240|
 |onChange|点击确定的方法|function(value)|-|
@@ -43,17 +44,7 @@ import 'ac-regular/build/regular.css'
 ```json
 {
     "regularTree":[
-    {
-        "name":"基础校验符号",
-        "code":"0",
-        "id":"0",
-        "child":[
-            {"name":"/","code":"/","id":"0-1"},
-            {"name":"*","code":"*","id":"0-2"},
-            {"name":"$","code":"$","id":"0-3"},
-            {"name":"%","code":"%","id":"0-4"},
-        ]
-    },
+ 
     {
         "name":"数学表达式校验",
         "code":"1",

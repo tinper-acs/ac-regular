@@ -11,7 +11,7 @@ class Left extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectValue:'1',
+            selectValue:'0',
             activeIndex:-1,
             selectList:[],
             tree:props.tree
@@ -22,7 +22,8 @@ class Left extends Component {
         let selectList=[]
         const newtree =JSON.parse(JSON.stringify(tree)) 
         newtree.forEach((v)=>{
-            v.child.forEach((v2)=>{
+            
+            v.id!='0'&&v.child.forEach((v2)=>{
                 const newa = v2
                 newa.name = v.name+'/'+newa.name
                 selectList.push(newa)
@@ -60,6 +61,17 @@ class Left extends Component {
     render(){
         const {selectList,activeIndex,selectValue} = this.state
         const {tree} = this.props
+        let treeAll=[] 
+        tree.forEach((v)=>{ 
+            treeAll =  treeAll.concat(v.child)
+        })
+        tree[0].id!='0'&&tree.unshift(
+            {
+                "name":"全部",
+                "code":"0",
+                "id":"0",
+                "child":treeAll
+            })
         const loops =(data) => data.map((v,k)=>{
             return (
               <Option value={v.id} key={v.id}>{v.name}</Option>
@@ -73,9 +85,16 @@ class Left extends Component {
         return(
         <div className="regular-left">
             <div className="regularleft-title">
-                <span>常用</span>
+                <span>正则表达式</span>
             </div>
-           
+            <Select 
+                className ='regularleft-select'
+                placeholder={''}
+                style={{ width: 208}}
+                value={selectValue}
+                onChange={this.textChange}>
+                {loops(tree||[])}
+             </Select>
             {/* <FormControl
                 className="regularleft-search"
                 value={searchValue}
@@ -99,17 +118,10 @@ class Left extends Component {
                 selectList.map((da,i)=>{return (<Option key={i} title={da.name} value={da.code} item={da} >{da.name}</Option>)})
                 }
             </Select>
-            <Select 
-                className ='regularleft-select'
-                placeholder={''}
-                style={{ width: 208}}
-                value={selectValue}
-                onChange={this.textChange}>
-                {loops(tree||[])}
-             </Select>
+           
              <ul  className ='regularleft-select-ul'>
                 {
-                    loopsli(tree[ parseInt(selectValue)-1 ].child)
+                    loopsli(tree[selectValue ].child)
                 }
              </ul>
         </div>)

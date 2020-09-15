@@ -62,6 +62,7 @@
     "bee-modal": "latest",
     "bee-select": "latest",
     "bee-form-control": "latest",
+    "bee-message": "latest",
     "bee-icon": "latest"
   },
   "peerDependencies": {
