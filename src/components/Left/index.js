@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Select from 'bee-select';
 import Icon from 'bee-icon';
 import Pinyin from '../../ChinesePY'
+import FormControl from 'bee-form-control';
 
 const Option = Select.Option;
 const propTypes = {};
@@ -14,22 +15,41 @@ class Left extends Component {
             selectValue:'0',
             activeIndex:-1,
             selectList:[],
-            tree:props.tree
+            searchValue:'',
+            treeAll:[]
         };
     }
     componentDidMount(){
-        const {tree} = this.state
-        let selectList=[]
-        const newtree =JSON.parse(JSON.stringify(tree)) 
-        newtree.forEach((v)=>{
+        const {tree} = this.props
+        // let selectList=[]
+        // const newtree =JSON.parse(JSON.stringify(tree)) 
+        // newtree.forEach((v)=>{
             
-            v.id!='0'&&v.child.forEach((v2)=>{
-                const newa = v2
-                newa.name = v.name+'/'+newa.name
-                selectList.push(newa)
+        //     v.id!='0'&&v.child.forEach((v2)=>{
+        //         const newa = v2
+        //         newa.name = v.name+'/'+newa.name
+        //         selectList.push(newa)
+        //     })
+        // }) 
+        // this.setState({selectList})
+        let tree0=[] 
+        let newobj={}
+        tree.forEach((v)=>{ 
+            v.child.forEach((v2)=>{
+                const id='0-'+v2.id
+                newobj ={...v2,id} 
+                tree0.push(newobj)
             })
-        }) 
-        this.setState({selectList})
+            
+        })
+        tree[0].id!='0'&&tree.unshift(
+            {
+                "name":"全部",
+                "code":"0",
+                "id":"0",
+                "child":tree0
+            })
+        this.setState({treeAll:tree})
     }
     textChange=(selectValue)=>{
         this.setState({selectValue,activeIndex:-1})
@@ -38,12 +58,25 @@ class Left extends Component {
         this.props.valueChange(v)
         this.setState({activeIndex:k})
     }
-    
-    onSearch = (value,{props:{item,key}}) => {
-        console.log(`selected ${value}`);
-        console.log(`selected item `,item);
-        this.setState({selectValue:item.id.split('-')[0]})
-        this.valueChange(item,parseInt(item.id.split('-')[1])-1)
+    onSearchChange=(v)=>{
+      
+        const {selectValue,treeAll} = this.state
+        const selectList = treeAll[selectValue].child
+        if(v==''){
+            this.setState({selectList,searchValue:''}) 
+        }
+    }
+    onSearch = (searchValue) => {
+        
+        const {selectValue,treeAll} = this.state
+        const list = treeAll[selectValue].child
+        const selectList = list.filter((v)=>{
+            return Pinyin.GetQP(v.name).indexOf( searchValue.toLowerCase() ) >= 0 ||v.name.indexOf(searchValue)>-1
+        })
+        // console.log(`selected ${value}`);
+        // console.log(`selected item `,item);
+        this.setState({searchValue,selectList})
+        // this.valueChange(item,parseInt(item.id.split('-')[1])-1)
       };
     selectPinYin=(input,option)=>{
         if(input.charCodeAt()>=32&&input.charCodeAt()<=126){
@@ -59,19 +92,8 @@ class Left extends Component {
         return rgx.test(qp)
     }
     render(){
-        const {selectList,activeIndex,selectValue} = this.state
-        const {tree} = this.props
-        let treeAll=[] 
-        tree.forEach((v)=>{ 
-            treeAll =  treeAll.concat(v.child)
-        })
-        tree[0].id!='0'&&tree.unshift(
-            {
-                "name":"全部",
-                "code":"0",
-                "id":"0",
-                "child":treeAll
-            })
+        const {selectList,activeIndex,selectValue,searchValue,treeAll} = this.state
+       
         const loops =(data) => data.map((v,k)=>{
             return (
               <Option value={v.id} key={v.id}>{v.name}</Option>
@@ -79,7 +101,7 @@ class Left extends Component {
         })
         const loopsli =(data) => data.map((v,k)=>{
             return (
-              <li className ={activeIndex==k?'regular-left-li active':'regular-left-li'} value={v.code} key={v.id} onClick={this.valueChange.bind(this,v,k)}>{v.name}</li>
+              <li className ={activeIndex==k?'regular-left-li active':'regular-left-li'} value={v.code} key={k} onClick={this.valueChange.bind(this,v,k)}>{v.name}</li>
             )
         })
         return(
@@ -93,17 +115,18 @@ class Left extends Component {
                 style={{ width: 208}}
                 value={selectValue}
                 onChange={this.textChange}>
-                {loops(tree||[])}
+                {loops(treeAll||[])}
              </Select>
-            {/* <FormControl
+            <FormControl
                 className="regularleft-search"
                 value={searchValue}
                 style={{ width: 208}}
                 onSearch={this.onSearch}
+                onChange={this.onSearchChange}
                 type="search"
-            /> */}
-             <Icon type="uf-search"/>
-            <Select
+            />
+            {/* <Icon type="uf-search"/>
+             <Select
                 showSearch
                // combobox
                 className="regularleft-search"
@@ -117,11 +140,11 @@ class Left extends Component {
                 {
                 selectList.map((da,i)=>{return (<Option key={i} title={da.name} value={da.code} item={da} >{da.name}</Option>)})
                 }
-            </Select>
+            </Select> */}
            
              <ul  className ='regularleft-select-ul'>
                 {
-                    loopsli(tree[selectValue ].child)
+                    searchValue!=''?loopsli(selectList):treeAll[ parseInt(selectValue) ]?loopsli(treeAll[ parseInt(selectValue)].child):null
                 }
              </ul>
         </div>)
