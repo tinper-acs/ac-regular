@@ -114,6 +114,8 @@ class Left extends Component {
                 placeholder={''}
                 style={{ width: 208}}
                 value={selectValue}
+                showSearch={true}
+                optionFilterProp="children"
                 onChange={this.textChange}>
                 {loops(treeAll||[])}
              </Select>

@@ -82,7 +82,7 @@ class Regular extends Component {
             /> */}
            
             <div className="regularright-btn">
-                <Button  bordered onClick={this.submit}>校验</Button>
+                {/* <Button  bordered onClick={this.submit}>校验</Button> */}
                 <Button  bordered onClick={this.clearn}>清空</Button>
                 <Button  bordered onClick={this.copyFun}>复制</Button>
                 <Button  bordered onClick={this.gonext}> <Icon type="uf-repeat" /></Button>

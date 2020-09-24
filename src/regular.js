@@ -56,7 +56,7 @@ class Regular extends Component {
     valueChange=(data)=>{
         const memo = data.memo || ''
         this.inputChange(this.ch2Unicdoe(data.code))
-        this.setState({memo:'注释：'+memo})
+        this.setState({memo:'实例说明：'+memo})
     }
     
     isChinese(s){
