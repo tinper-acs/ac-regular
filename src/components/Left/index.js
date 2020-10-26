@@ -20,7 +20,7 @@ class Left extends Component {
         };
     }
     componentDidMount(){
-        const {tree} = this.props
+        const {tree,value} = this.props
         // let selectList=[]
         // const newtree =JSON.parse(JSON.stringify(tree)) 
         // newtree.forEach((v)=>{
@@ -34,13 +34,17 @@ class Left extends Component {
         // this.setState({selectList})
         let tree0=[] 
         let newobj={}
-        tree.forEach((v)=>{ 
+        let defualtIndex = -1
+        tree[0].id!='0'?tree.forEach((v)=>{ 
             v.child.forEach((v2)=>{
                 const id='0-'+v2.id
                 newobj ={...v2,id} 
                 tree0.push(newobj)
             })
             
+        }):tree0=tree[0].child
+        value&& tree0.forEach((v,i)=>{
+            if(v.code == value){ this.valueChange(v,i) }
         })
         tree[0].id!='0'&&tree.unshift(
             {
@@ -52,14 +56,20 @@ class Left extends Component {
         this.setState({treeAll:tree})
     }
     textChange=(selectValue)=>{
-        this.setState({selectValue,activeIndex:-1})
+        const {value} = this.props
+        const {treeAll} = this.state
+        
+        this.setState({selectValue,activeIndex:-1},()=>{
+            // value&&treeAll[0].child.forEach((v,i)=>{
+            //     if(v.code == value){ this.valueChange(v,i) }
+            // })
+        })
     }
     valueChange=(v,k)=>{
         this.props.valueChange(v)
         this.setState({activeIndex:k})
     }
     onSearchChange=(v)=>{
-      
         const {selectValue,treeAll} = this.state
         const selectList = treeAll[selectValue].child
         if(v==''){

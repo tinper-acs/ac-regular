@@ -130,7 +130,7 @@ class Regular extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Left tree={tree} valueChange={this.valueChange} onSearch={this.onSearch} newTree={newTree} searchValue={searchValue}></Left>
+                    <Left tree={tree} valueChange={this.valueChange} onSearch={this.onSearch} newTree={newTree} searchValue={searchValue} value={value}></Left>
                     <Right memo={memo} step={step} data={data} value={inputValue} inputChange={this.inputChange} memoChange={this.memoChange}></Right>
                 </Modal.Body>
 
